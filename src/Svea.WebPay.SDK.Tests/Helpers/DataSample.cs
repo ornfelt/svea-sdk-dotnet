@@ -7,7 +7,7 @@
             ""Id"":2291662,
             ""Currency"":""SEK"",
             ""MerchantOrderId"":""637254821997417753"",
-            ""OrderStatus"":""Open"",
+            ""OrderStatus"":""Expired"",
             ""SystemStatus"":""Active"",
             ""SystemStatusMessage"":null,
             ""PaymentCreditStatus"":null,
@@ -66,7 +66,9 @@
                 }
             ],
             ""Actions"":[""CanDeliverOrder"",""CanDeliverPartially"",""CanCancelOrder"",""CanCancelOrderRow"",""CanAddOrderRow"",""CanUpdateOrderRow""],
-            ""SveaWillBuy"":true
+            ""SveaWillBuy"":true,
+            ""ExpirationDate"": ""2024-06-09T22:00:00"",
+            ""BillingReferences"": []
         }";
 
         public static string AdminDeliveredOrder = @"
