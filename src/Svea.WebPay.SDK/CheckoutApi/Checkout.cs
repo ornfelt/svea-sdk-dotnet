@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Svea.WebPay.SDK.CheckoutApi.Utility;
+using System;
 using System.Threading.Tasks;
 
 namespace Svea.WebPay.SDK.CheckoutApi
@@ -10,6 +11,7 @@ namespace Svea.WebPay.SDK.CheckoutApi
         public Checkout(SveaHttpClient sveaHttpClient)
         {
             _sveaHttpClient = sveaHttpClient;
+            Utility = new CheckoutUtility(sveaHttpClient);
         }
 
         /// <summary>
@@ -53,5 +55,9 @@ namespace Svea.WebPay.SDK.CheckoutApi
             var data = await _sveaHttpClient.HttpPut<Data>(url, updateOrderModel, configureAwait);
             return data;
         }
+        /// <summary>
+        /// Checkout utility methods that are not related to orders.
+        /// </summary>
+        public CheckoutUtility Utility { get; }
     }
 }
