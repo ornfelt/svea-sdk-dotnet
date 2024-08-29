@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.Json.Serialization;
 
-namespace Svea.WebPay.SDK.CheckoutApi.Response
+namespace Svea.WebPay.SDK.CheckoutApi
 {
     public class OrderData
     {
@@ -110,7 +110,7 @@ namespace Svea.WebPay.SDK.CheckoutApi.Response
         public OrderData(MerchantSettings merchantSettings, Cart cart, Customer customer, Address shippingAddress, Address billingAddress, string locale, string currency,
             string countryCode, Presetvalue[] presetValues, string clientOrderNumber, long orderId, string emailAddress, string phoneNumber, PaymentType? paymentType,
             CheckoutOrderStatus status, object customerReference, bool? sveaWillBuyOrder, IdentityFlags identityFlags, object merchantData, PaymentInfo payment, string peppolId, GetOrderShippingInformation shippingInformation,
-            bool? recurring, string recurringToken = null)
+            bool? recurring, string recurringToken = null, OrderValidation validation = null)
         {
             MerchantSettings = merchantSettings;
             Cart = cart;
@@ -136,6 +136,7 @@ namespace Svea.WebPay.SDK.CheckoutApi.Response
             ShippingInformation = shippingInformation;
             Recurring = recurring;
             RecurringToken = recurringToken;
+            Validation = validation;
         }
 
         /// <summary>
@@ -272,5 +273,12 @@ namespace Svea.WebPay.SDK.CheckoutApi.Response
         /// </summary>
         [JsonInclude]
         public string RecurringToken { get; }
+
+        /// <summary>
+        /// Order validations such as minimum age requirement.
+        /// Apply it in order to have order validation such as minimum age.
+        /// </summary>
+        [JsonInclude]
+        public OrderValidation Validation { get; }
     }
 }
