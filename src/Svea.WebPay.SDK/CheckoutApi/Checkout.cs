@@ -1,4 +1,6 @@
-﻿using Svea.WebPay.SDK.CheckoutApi.Utility;
+
+using Svea.WebPay.SDK.CheckoutApi.Recurring;
+using Svea.WebPay.SDK.CheckoutApi.Utility;
 using System;
 using System.Threading.Tasks;
 
@@ -11,6 +13,7 @@ namespace Svea.WebPay.SDK.CheckoutApi
         public Checkout(SveaHttpClient sveaHttpClient)
         {
             _sveaHttpClient = sveaHttpClient;
+            Recurring = new CheckoutRecurring(sveaHttpClient);
             Utility = new CheckoutUtility(sveaHttpClient);
         }
 
@@ -55,6 +58,11 @@ namespace Svea.WebPay.SDK.CheckoutApi
             var data = await _sveaHttpClient.HttpPut<Data>(url, updateOrderModel, configureAwait);
             return data;
         }
+
+        /// <summary>
+        /// Checkout recurring methods for creating subsequent recurring orders and managing recurring token.
+        /// </summary>
+        public CheckoutRecurring Recurring { get; }
         /// <summary>
         /// Checkout utility methods that are not related to orders.
         /// </summary>
